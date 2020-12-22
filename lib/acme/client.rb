@@ -314,7 +314,7 @@ class Acme::Client
         configuration.request(:retry,
           max: @bad_nonce_retry,
           methods: Faraday::Connection::METHODS,
-          exceptions: [Acme::Client::Error::BadNonce])
+          exceptions: [Acme::Client::Error::BadNonce, Acme::Client::Error::Timeout])
       end
       yield(configuration) if block_given?
       configuration.adapter Faraday.default_adapter
